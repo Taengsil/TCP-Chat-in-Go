@@ -23,3 +23,6 @@ Original video - [Building a TCP Chat in Go(video)](https://www.youtube.com/watc
     telnet localhost 8888
 
 ## Step 5 - You should have an established connection, you are now free to send and receive messages within the chatrooms
+
+# Preview
+![](https://github.com/Taengsil/TCP-Chat-in-Go/assets/75990982/640ff4ea-f28f-4499-b139-6cdd3272dbb4)
