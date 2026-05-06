@@ -160,6 +160,7 @@ This project focuses on demonstrating core TCP networking and concurrency concep
   - Better handling of edge cases (disconnects, invalid states)
 
 - **Extensibility**
+  - Add Abstractions and Interfaces to implement best practices
   - Make it easier to add features like private messaging or persistence
 
 These improvements would make the project more maintainable, testable, and production-ready.
