@@ -132,3 +132,34 @@ Original video - [Building a TCP Chat in Go(video)](https://www.youtube.com/watc
 
 # Preview
 ![](https://github.com/Taengsil/TCP-Chat-in-Go/assets/75990982/640ff4ea-f28f-4499-b139-6cdd3272dbb4)
+
+---
+
+## Possible Improvements
+
+This project focuses on demonstrating core TCP networking and concurrency concepts in Go. The current implementation is intentionally simple, but it could be improved in several areas:
+
+- **Project Structure**
+  - Separate concerns into packages (e.g. `server`, `client`, `room`, `commands`)
+  - Improve folder organization for scalability and readability
+
+- **Separation of Responsibilities**
+  - Decouple networking, command parsing, and business logic
+  - Introduce clearer boundaries between components
+
+- **Command Parsing**
+  - Improve argument parsing and validation
+  - Handle malformed input more robustly
+
+- **Testing**
+  - Add unit tests for core logic (server, rooms, command handling)
+  - Introduce integration tests for client-server interaction
+
+- **Error Handling**
+  - More consistent and structured error management
+  - Better handling of edge cases (disconnects, invalid states)
+
+- **Extensibility**
+  - Make it easier to add features like private messaging or persistence
+
+These improvements would make the project more maintainable, testable, and production-ready.
