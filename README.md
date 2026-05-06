@@ -1,33 +1,51 @@
 # TCP Chat in Go
 
-A simple TCP-based chat application written in Go. This project demonstrates how to build a concurrent client-server chat system using Go’s networking and goroutines.
+A TCP-based chat server written in Go that supports multiple clients, chat rooms, and basic command handling. This project demonstrates concurrent server design using goroutines and channels.
 
 ---
 
 ## Features
 
-- TCP server handling multiple clients concurrently
-- Real-time message broadcasting
-- Lightweight and minimal dependencies
-- Goroutine-based concurrency model
-- Simple CLI-based client interaction
+- Concurrent TCP server using goroutines
+- Multiple client support
+- Chat room system (create/join dynamically)
+- Nickname system
+- Message broadcasting within rooms
+- Command-based interaction
+- Lightweight (standard library only)
 
 ---
 
 ## Architecture
 
-The application follows a basic client-server model:
+The application follows a channel-driven, concurrent client-server model.
 
-### Server
-- Listens for incoming TCP connections
-- Handles each client in a separate goroutine
-- Broadcasts messages to all connected clients
+### Core Components
 
-### Client
-- Connects to the server via TCP
-- Sends user input to the server
-- Receives and displays messages from other users
+#### Server
+- Maintains:
+  - Active chat rooms (`map[string]*room`)
+  - Command channel (`chan command`)
+- Central event loop (`run`) processes all client commands
+- Handles:
+  - Nickname changes
+  - Room creation/joining
+  - Message broadcasting
+  - Client disconnection
 
+#### Client
+- Represents a single TCP connection
+- Reads input from the socket
+- Parses commands and sends them to the server via a channel
+- Receives messages and writes them back to the connection
+
+#### Room
+- Contains:
+  - Room name
+  - Connected members (`map[net.Addr]*client`)
+
+#### Command System
+- Commands are parsed client-side and sent as structured data, processed centrally by the server
 ---
 
 ## Commands
@@ -38,6 +56,14 @@ The application follows a basic client-server model:
 - `/msg <message>` – Send a message to the current room
 - `/quit` – Disconnect from the server
 
+---
+## How It Works
+1. Client connects via TCP
+2. A client instance is created
+3. Input is continuously read and parsed into commands
+4. Commands are sent through a channel to the server
+5. The server processes commands in a single event loop
+6. Messages are broadcast within rooms
 ---
 
 ## Getting Started
@@ -70,15 +96,35 @@ On Windows
 ```
 TCP_Chat_In_Go.exe
 ```
+The server will start on:
+```
+localhost:8888
+```
+
 ## Step 4 - Connect via Telnet
 
-Open a new terminal and run:
+Open a new terminal and connect using telnet:
 ```
 telnet localhost 8888
 ```
+You can open multiple terminals to simulate multiple users.
 
 ## Step 5 – Start chatting
 You should now be connected and able to send/receive messages within chat rooms.
+
+## Example Usage
+
+```
+/nick Maddie
+/join general
+/msg Hello everyone
+```
+
+## Notes / Limitations
+- A user can only be in one room at a time
+- No persistence (rooms and messages are in-memory)
+- Minimal input validation (commands assume correct format)
+- No authentication or encryption
 
 # Credit
 
