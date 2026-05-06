@@ -1,28 +1,88 @@
-# Commands
+# TCP Chat in Go
 
-- `/nick <name>` - get a name, otherwise user will stay anonymous.
-- `/join <name>` - join a room or create a room if it doesn't exist. User can be in only one room at the same time.
-- `/rooms` - show list of available rooms to join.
-- `/msg <msg>`- broadcast message to everyone in a room.
-- `/quit` - disconnect from the chat server.
+A simple TCP-based chat application written in Go. This project demonstrates how to build a concurrent client-server chat system using Go’s networking and goroutines.
+
+---
+
+## Features
+
+- TCP server handling multiple clients concurrently
+- Real-time message broadcasting
+- Lightweight and minimal dependencies
+- Goroutine-based concurrency model
+- Simple CLI-based client interaction
+
+---
+
+## Architecture
+
+The application follows a basic client-server model:
+
+### Server
+- Listens for incoming TCP connections
+- Handles each client in a separate goroutine
+- Broadcasts messages to all connected clients
+
+### Client
+- Connects to the server via TCP
+- Sends user input to the server
+- Receives and displays messages from other users
+
+---
+
+## Commands
+
+- `/nick <name>` – Set your username (default: anonymous)
+- `/join <name>` – Join or create a chat room (one room at a time)
+- `/rooms` – List available chat rooms
+- `/msg <message>` – Send a message to the current room
+- `/quit` – Disconnect from the server
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+- Go installed (>= 1.18 recommended)
+- Telnet client installed
+
+---
+
+### Step 1 – Clone the repository
+
+```bash
+git clone https://github.com/Taengsil/TCP-Chat-in-Go.git
+cd TCP-Chat-in-Go
+```
+
+### Step 2 - Build
+```
+go build
+```
+
+## Step 3 - Run the server
+On Linux
+```
+./TCP_Chat_In_Go
+```
+On Windows
+```
+TCP_Chat_In_Go.exe
+```
+## Step 4 - Connect via Telnet
+
+Open a new terminal and run:
+```
+telnet localhost 8888
+```
+
+## Step 5 – Start chatting
+You should now be connected and able to send/receive messages within chat rooms.
 
 # Credit
 
 Original video - [Building a TCP Chat in Go(video)](https://www.youtube.com/watch?v=Sphme0BqJiY) by Alex Pliutau, found in the [Github Project Repository](https://github.com/practical-tutorials/project-based-learning#go).
-
-# Installation
-
-## Step 1 - Pull the repository
-
-## Step 2 - Build the app using the following command:
-    go build
-
-## Step 3 - Run TCP_Chat_In_Go.exe
-
-## Step 4 - With the project executable file running, open a CMD and run the following command:
-    telnet localhost 8888
-
-## Step 5 - You should have an established connection, you are now free to send and receive messages within the chatrooms
 
 # Preview
 ![](https://github.com/Taengsil/TCP-Chat-in-Go/assets/75990982/640ff4ea-f28f-4499-b139-6cdd3272dbb4)
